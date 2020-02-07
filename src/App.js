@@ -1,10 +1,19 @@
 import React from 'react';
-import { Button } from 'semantic-ui-react';
+import { Container } from 'semantic-ui-react';
 
+import EventDashboard from './components/EventDashboard/EventDashboard';
+import NavBar from './components/Nav/NavBar';
+
+import 'semantic-ui-css/semantic.min.css';
 
 function App() {
   return (
-    <Button icon='smile' content='Semantic' />
+    <>
+      <NavBar />
+      <Container className='main'>
+        <EventDashboard />
+      </Container>
+    </>
   );
 }
 
