@@ -3,7 +3,7 @@ import { Segment, Form, Button } from 'semantic-ui-react';
 
 import FormInput from './FormInput';
 
-const EventForm = ({closeForm}) => {
+const EventForm = ({closeForm, handleCreateEvent}) => {
   const [event, setEvent] = useState({
     title: '',
     date: '',
@@ -17,7 +17,8 @@ const EventForm = ({closeForm}) => {
   const onChangeHandler = ({ target: { name, value } }) => setEvent({ ...event, [name]: value });
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    console.log(event)
+
+    handleCreateEvent(event);
   };
   return (
     <Segment>

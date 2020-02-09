@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Grid, Button } from 'semantic-ui-react';
+import uuid from 'uuid';
 
 import EventList from '../EventList/EventList';
 import EventForm from '../EventForm/EventForm';
@@ -64,6 +65,13 @@ const EventDashboard = () => {
 
   const closeForm = () => setFormState(false);
 
+  const handleCreateEvent = (newEvent) => {
+    newEvent.id = uuid.v4();
+    newEvent.hostPhotoURL = '/assets/user.png';
+    setEvents([...events, newEvent]);
+    setFormState(false);
+  };
+
   return (
     <Grid>
       <Grid.Column width={10}>
@@ -71,7 +79,7 @@ const EventDashboard = () => {
       </Grid.Column>
       <Grid.Column width={6}>
         <Button onClick={toggleForm} positive content='Create Event'/>
-        {formState && <EventForm closeForm={closeForm} />}
+        {formState && <EventForm handleCreateEvent={handleCreateEvent} closeForm={closeForm} />}
       </Grid.Column>
     </Grid>
   );
