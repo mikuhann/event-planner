@@ -1,8 +1,8 @@
 import React from 'react';
 import { Container } from 'semantic-ui-react';
 
-import EventDashboard from './components/Event/EventDashboard/EventDashboard';
-import NavBar from './components/Nav/NavBar';
+import EventDashboard from './components/Event/EventDashboard';
+import NavBar from './components/Nav/';
 
 import 'semantic-ui-css/semantic.min.css';
 

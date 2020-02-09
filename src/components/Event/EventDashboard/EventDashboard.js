@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Grid, Button } from 'semantic-ui-react';
 import uuid from 'uuid';
 
-import EventList from '../EventList/EventList';
-import EventForm from '../EventForm/EventForm';
+import EventList from '../EventList/';
+import EventForm from '../EventForm';
 
 const EventDashboard = () => {
   const [events, setEvents] = useState([
