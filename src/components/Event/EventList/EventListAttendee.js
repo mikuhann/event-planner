@@ -1,11 +1,13 @@
 import React from 'react';
 import { ListItem, Image } from 'semantic-ui-react';
 
-const EventListAttendee = () => {
+const EventListAttendee = ({ attendees }) => {
   return (
-    <ListItem>
-      <Image as='a' size='mini' circular src='https://randomuser.me/api/portraits/women/35.jpg' />
-    </ListItem>
+    attendees.map(({id, photoURL}) => (
+      <ListItem key={id}>
+        <Image as='a' size='mini' circular src={photoURL} />
+      </ListItem>
+    ))
   );
 };
 

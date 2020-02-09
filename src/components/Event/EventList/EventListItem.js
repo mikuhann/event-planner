@@ -15,17 +15,18 @@ import {
 
 import EventListAttendee from './EventListAttendee';
 
-const EventListItem = () => {
+const EventListItem = ({ event }) => {
+  const { title, date, description, venue, hostedBy, hostPhotoURL, attendees } = event;
   return (
     <SegmentGroup>
       <Segment>
         <ItemGroup>
           <Item>
-            <ItemImage size='tiny' circular src='https://randomuser.me/api/portraits/men/36.jpg' />
+            <ItemImage size='tiny' circular src={hostPhotoURL} />
             <ItemContent>
-              <ItemHeader as='a'>EventTitle</ItemHeader>
+              <ItemHeader as='a'>{title}</ItemHeader>
               <ItemDescription>
-                Hosted by <a href="#">hosted by</a>
+                Hosted by <a href="#">{hostedBy}</a>
               </ItemDescription>
             </ItemContent>
           </Item>
@@ -33,19 +34,17 @@ const EventListItem = () => {
       </Segment>
       <Segment>
         <span>
-          <Icon name='clock' />date
-          <Icon name='marker' />time
+          <Icon name='clock' />{date} |
+          <Icon name='marker' />{venue}
         </span>
       </Segment>
       <Segment secondary>
         <List horizontal>
-          <EventListAttendee />
-          <EventListAttendee />
-          <EventListAttendee />
+          <EventListAttendee attendees={attendees} />
         </List>
       </Segment>
       <Segment clearing>
-        Description
+        {description}
         <Button as='a' color='teal' floated='right' content='View' />
       </Segment>
     </SegmentGroup>
