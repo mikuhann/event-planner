@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Grid, Button } from 'semantic-ui-react';
 
 import EventList from '../EventList/EventList';
 import EventForm from '../EventForm/EventForm';
 
 const EventDashboard = () => {
-  const events = [
+  const [events, setEvents] = useState([
     {
       id: '1',
       title: 'Trip to Tower of London',
@@ -54,7 +54,15 @@ const EventDashboard = () => {
         },
       ],
     }
-  ];
+  ]);
+
+  const [formState, setFormState] = useState(false);
+
+  const toggleForm = () => {
+    setFormState(!formState);
+  };
+
+  const closeForm = () => setFormState(false);
 
   return (
     <Grid>
@@ -62,8 +70,8 @@ const EventDashboard = () => {
         <EventList events={events} />
       </Grid.Column>
       <Grid.Column width={6}>
-        <Button positive content='Create Event'/>
-        <EventForm />
+        <Button onClick={toggleForm} positive content='Create Event'/>
+        {formState && <EventForm closeForm={closeForm} />}
       </Grid.Column>
     </Grid>
   );

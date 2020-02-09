@@ -3,7 +3,7 @@ import { Segment, Form, Button } from 'semantic-ui-react';
 
 import FormInput from './FormInput';
 
-const EventForm = () => {
+const EventForm = ({closeForm}) => {
   return (
     <Segment>
       <Form>
@@ -13,7 +13,7 @@ const EventForm = () => {
         <FormInput label='Venue' placeholder='Enter the Venue of the event'/>
         <FormInput label='Hosted by' placeholder='Enter the name of person hosting' />
         <Button positive type='submit' content='Submit' />
-        <Button type='button' content='Cancel' />
+        <Button type='button' content='Cancel' onClick={closeForm} />
       </Form>
     </Segment>
   );
