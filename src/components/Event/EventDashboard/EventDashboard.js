@@ -10,7 +10,7 @@ const EventDashboard = () => {
     {
       id: '1',
       title: 'Trip to Tower of London',
-      date: '2018-03-27T11:00:00+00:00',
+      date: '2018-03-27',
       category: 'culture',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin ligula eu leo tincidunt, quis scelerisque magna dapibus. Sed eget ipsum vel arcu vehicula ullamcorper.',
@@ -34,7 +34,7 @@ const EventDashboard = () => {
     {
       id: '2',
       title: 'Trip to Punch and Judy Pub',
-      date: '2018-03-28T14:00:00+00:00',
+      date: '2018-03-28',
       category: 'drinks',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin ligula eu leo tincidunt, quis scelerisque magna dapibus. Sed eget ipsum vel arcu vehicula ullamcorper.',
@@ -58,12 +58,21 @@ const EventDashboard = () => {
   ]);
 
   const [formState, setFormState] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState(null);
 
-  const toggleForm = () => {
-    setFormState(!formState);
+  const handleSelectEvent = (event) => {
+    setSelectedEvent(event);
+    setFormState(true);
   };
 
-  const closeForm = () => setFormState(false);
+  const handleFormCancel = () => {
+    setFormState(false);
+  };
+
+  const handleCreateFormOpen = () => {
+    setSelectedEvent(null);
+    setFormState(true);
+  };
 
   const handleCreateEvent = (newEvent) => {
     newEvent.id = uuid.v4();
@@ -72,14 +81,33 @@ const EventDashboard = () => {
     setFormState(false);
   };
 
+  const handleUpdateEvent = (updatedEvent) => {
+    setEvents(events.map((event) => event.id === updatedEvent.id ? updatedEvent : event));
+    setFormState(false);
+    setSelectedEvent(null);
+  };
+
+  const handleDeleteEvent = (eventId) => {
+    setEvents(events.filter((event) => event.id !== eventId))
+  };
+
   return (
     <Grid>
       <Grid.Column width={10}>
-        <EventList events={events} />
+        <EventList
+          events={events}
+          selectEvent={handleSelectEvent}
+          deleteEvent={handleDeleteEvent}
+        />
       </Grid.Column>
       <Grid.Column width={6}>
-        <Button onClick={toggleForm} positive content='Create Event'/>
-        {formState && <EventForm handleCreateEvent={handleCreateEvent} closeForm={closeForm} />}
+        <Button onClick={handleCreateFormOpen} positive content='Create Event'/>
+        {formState && <EventForm
+          updateEvent={handleUpdateEvent}
+          selectedEvent={selectedEvent}
+          handleCreateEvent={handleCreateEvent}
+          closeForm={handleFormCancel}
+        />}
       </Grid.Column>
     </Grid>
   );

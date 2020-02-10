@@ -15,7 +15,7 @@ import {
 
 import EventListAttendee from './EventListAttendee';
 
-const EventListItem = ({ event }) => {
+const EventListItem = ({ event, selectEvent, deleteEvent }) => {
   const { title, date, description, venue, hostedBy, hostPhotoURL, attendees } = event;
   return (
     <SegmentGroup>
@@ -45,7 +45,20 @@ const EventListItem = ({ event }) => {
       </Segment>
       <Segment clearing>
         {description}
-        <Button as='a' color='teal' floated='right' content='View' />
+        <Button
+          onClick={() => selectEvent(event)}
+          as='a'
+          color='teal'
+          floated='right'
+          content='View'
+        />
+        <Button
+          onClick={() => deleteEvent(event.id)}
+          as='a'
+          color='red'
+          floated='right'
+          content='Delete'
+        />
       </Segment>
     </SegmentGroup>
   );
