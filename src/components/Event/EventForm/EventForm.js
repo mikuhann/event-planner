@@ -32,6 +32,7 @@ const EventForm = ({closeForm, handleCreateEvent, updateEvent, selectedEvent}) =
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
+
     if (selectedEvent === null) {
       handleCreateEvent(event);
     } else {
