@@ -1,10 +1,27 @@
 import React from 'react';
+import { Segment, Container, Header, Image, Icon, Button } from 'semantic-ui-react';
 
-const HomePage = () => {
+import { Routes } from '../../constants/Routes';
+
+const HomePage = ({ history }) => {
   return (
-    <div>
-      <h1>HomePage</h1>
-    </div>
+    <Segment inverted textAlign='center' vertical className='masthead'>
+      <Container text>
+        <Header as='h1' inverted>
+          <Image
+            size='massive'
+            src='/assets/logo.svg'
+            alt='logo'
+            style={{ marginBottom: 12 }}
+          />
+          Event Planner
+        </Header>
+        <Button onClick={() => history.push(Routes.EVENTS)} size='huge' inverted>
+          Get Started
+          <Icon name='right arrow' inverted />
+        </Button>
+      </Container>
+    </Segment>
   );
 };
 

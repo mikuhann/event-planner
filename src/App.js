@@ -18,18 +18,23 @@ import 'semantic-ui-css/semantic.min.css';
 function App() {
   return (
     <>
-      <NavBar />
-      <Container className='main'>
-        <Switch>
-          <Route exact path={ Routes.HOME } component={ HomePage } />
-          <Route exact path={ Routes.EVENTS } component={ EventDashboard } />
-          <Route exact path={ Routes.EVENT } component={ EventDetailsPage } />
-          <Route exact path={ Routes.PROFILES } component={ UsersDashboardPage } />
-          <Route exact path={ Routes.PROFILE } component={ UserDetailsPage } />
-          <Route exact path={ Routes.SETTINGS } component={ DashboardSettingsPage } />
-          <Route exact path={ Routes.CREATE_EVENT } component={ EventForm } />
-        </Switch>
-      </Container>
+      <Route exact path={ Routes.HOME } component={ HomePage } />
+      <Route path='/(.+)' render={() => (
+        <>
+          <NavBar />
+          <Container className='main'>
+            <Switch>
+
+              <Route exact path={ Routes.EVENTS } component={ EventDashboard } />
+              <Route exact path={ Routes.EVENT } component={ EventDetailsPage } />
+              <Route exact path={ Routes.PROFILES } component={ UsersDashboardPage } />
+              <Route exact path={ Routes.PROFILE } component={ UserDetailsPage } />
+              <Route exact path={ Routes.SETTINGS } component={ DashboardSettingsPage } />
+              <Route exact path={ Routes.CREATE_EVENT } component={ EventForm } />
+            </Switch>
+          </Container>
+        </>
+      )} />
     </>
   );
 }
