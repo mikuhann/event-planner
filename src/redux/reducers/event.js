@@ -51,7 +51,6 @@ const initialState = {
       ],
     }
   ],
-  current: null,
 };
 
 export default (state = initialState, action) => {
@@ -68,7 +67,7 @@ export default (state = initialState, action) => {
     case UPDATE_EVENT: {
       return {
         ...state,
-        current: payload,
+        events: state.events.map((event) => event.id === payload.id ? payload : event),
       };
     }
 
